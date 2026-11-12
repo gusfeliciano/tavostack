@@ -7,7 +7,7 @@ description: "Initialize memory-bank files by analyzing an existing codebase. Us
 
 Use this when Tavo Stack has just been added to an existing project and the memory bank is still uninitialized: the files are empty or template-only. You'll read the codebase and propose what each file should contain — the user reviews and edits before anything gets written.
 
-**Existing bank content:** check each core file in the effective bank. If every one has real content beyond the template placeholders, the bank is initialized: do not re-seed it; point to `start` to resume or `update-memory` to correct it. If only some do (a partial bank, such as a `projectbrief.md` the user wrote), keep those files exactly as they are, read them first as given, and propose only the files that are missing, empty, or template-only; where the code disagrees with an existing file, say so instead of rewriting it.
+**Existing bank content:** check each core file in the memory bank. If every one has real content beyond the template placeholders, the bank is initialized: do not re-seed it; point to `start` to resume or `update-memory` to correct it. If only some do (a partial bank, such as a `projectbrief.md` the user wrote), keep those files exactly as they are, read them first as given, and propose only the files that are missing, empty, or template-only; where the code disagrees with an existing file, say so instead of rewriting it.
 
 **Setup context:** if setup already ran in this session (start's setup mode), treat its answers as given (stage, spec path, users) and ask only about what is still missing. The proposal and approval steps below are unchanged.
 

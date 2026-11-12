@@ -9,7 +9,7 @@ Update the memory bank to reflect the work done this session. Always show propos
 
 ## Workflow
 
-1. Read the seven core files in the effective bank, its `.rules`, and the
+1. Read the seven core files in the memory bank, its `.rules`, and the
    contract's **Memory accuracy** section. Read optional docs only for relevant
    subjects; skip `archive/` unless this task needs that history.
 2. **Capture and reconcile (required).** Follow both passes in "Memory accuracy":

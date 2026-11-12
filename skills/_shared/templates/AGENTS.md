@@ -52,6 +52,17 @@ Tavo Stack's workflows. Copied into this project they are called as `/name`; loa
 - `from-prd` — seed the bank from an existing PRD, brief, or spec
 - `init-memory` — analyze the codebase and propose initial bank contents (code already exists)
 
+Optional workflows, present only if they were set up in this project or the plugin is loaded:
+
+- `breakdown` — break a task into steps before starting
+- `review` — review the current branch or diff
+- `ship` — pre-merge readiness checklist
+- `security-check` — a light security pass on the current change
+- `ask-codex` — ask the Codex CLI for a second opinion
+- `polish` — rewrite prose so a reader gets the facts faster; proposes, never writes
+- `verify-map` — record how to verify a feature by hand, and what was seen
+- `file-pr`, `babysit-pr`, `modernize-pr`, `pr-comment` — open a pull request, watch it through checks and review, refresh a stale one, and comment on one
+
 ## Ground rules
 
 - Don't assume project context that isn't supported by the memory bank. Ask.

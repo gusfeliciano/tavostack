@@ -82,7 +82,7 @@ the next session make a better decision.
 ## Memory accuracy
 
 Every `/update-memory` or `$update-memory` proposal includes two passes over
-the selected effective bank, bounded to subjects changed or discovered in the
+the memory bank, bounded to subjects changed or discovered in the
 session. This is routine reconciliation, not a full repository audit.
 
 - **Capture:** compare session decisions and observations with relevant git
@@ -153,7 +153,7 @@ cold-start agent can resume from without redoing work:
 Bank files are read every session, so their size is the framework's context
 budget. Retention keeps the two volatile files bounded without losing history.
 
-**Soft targets, per effective bank:**
+**Soft targets, per memory bank:**
 
 - `activeContext.md`: at most 200 lines and 12,000 bytes.
 - `progress.md`: `## Recent milestones` keeps its 10 newest entries.
@@ -180,7 +180,7 @@ in place by the normal update:
 - Any other structure is left untouched and reported as remaining overage.
 
 **Rotation is lossless.** Selected units move verbatim to
-`<effective bank>/archive/<file>-<YYYY-MM>.md` (append, or create with a
+`memory-bank/archive/<file>-<YYYY-MM>.md` (append, or create with a
 one-line header), and the live file keeps one pointer line,
 `Older entries: archive/<file>-*.md`, directly under the first
 `## Recent ...` heading. If protected content alone exceeds the target,

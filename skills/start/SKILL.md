@@ -41,7 +41,7 @@ Do these in order, before anything else:
 
    Report its findings and summary line as they are — it never blocks the session. If the file is absent, say `checker absent`.
 
-If any memory bank file is empty, missing, or still only template placeholders, surface it as `BLANK` or `UNINITIALIZED`. If the mode is `setup`, or the effective bank is missing or no core file has real content, use **Setup mode** instead of Step 2. Otherwise, when some files are blank (a partial bank), continue with Step 2 and offer to fill them: on yes, choose the seed workflow as Setup mode does; it proposes only the blank files and keeps the others exactly as they are.
+If any memory bank file is empty, missing, or still only template placeholders, surface it as `BLANK` or `UNINITIALIZED`. If the mode is `setup`, or the memory bank is missing or no core file has real content, use **Setup mode** instead of Step 2. Otherwise, when some files are blank (a partial bank), continue with Step 2 and offer to fill them: on yes, choose the seed workflow as Setup mode does; it proposes only the blank files and keeps the others exactly as they are.
 
 ---
 

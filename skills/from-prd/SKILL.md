@@ -24,7 +24,7 @@ This sits between `discover` and `init-memory`:
    - If not, look for likely files in `docs/`, the repo root, or filenames containing `prd`, `brief`, `spec`, `requirements`, or `product`.
    - If there are multiple plausible files, ask which one to use.
 2. Read the PRD in full.
-3. Check each core file in the effective bank. If every one has real content beyond the template placeholders, the bank is initialized: do not re-seed it; point to `start` to resume or `update-memory` to correct it. If only some do (a partial bank, such as a `projectbrief.md` the user wrote), keep those files exactly as they are, read them first as given, and propose only the files that are missing, empty, or template-only; where the PRD disagrees with an existing file, say so instead of rewriting it.
+3. Check each core file in the memory bank. If every one has real content beyond the template placeholders, the bank is initialized: do not re-seed it; point to `start` to resume or `update-memory` to correct it. If only some do (a partial bank, such as a `projectbrief.md` the user wrote), keep those files exactly as they are, read them first as given, and propose only the files that are missing, empty, or template-only; where the PRD disagrees with an existing file, say so instead of rewriting it.
 4. Extract what the PRD clearly says about:
    - Problem
    - User

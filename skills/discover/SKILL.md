@@ -11,7 +11,7 @@ This is the inverse of `init-memory`. That workflow analyzes existing code. This
 
 **Setup context:** if setup already ran in this session (start's setup mode), treat its answers as given — skip the open prompt when the idea is already described and mark those items clear in Phase 2 — and ask only about what is still missing. The proposal and approval steps below are unchanged.
 
-**Existing bank content:** check each core file in the effective bank. If every one has real content beyond the template placeholders, this is the wrong workflow — point the user toward `start` instead. If only some do (a partial bank, such as a `projectbrief.md` the user wrote), keep those files exactly as they are and treat them as the user's answers: skip the open prompt when they already describe the idea, mark what they cover as clear in Phase 2, and propose only the files that are missing, empty, or template-only.
+**Existing bank content:** check each core file in the memory bank. If every one has real content beyond the template placeholders, this is the wrong workflow — point the user toward `start` instead. If only some do (a partial bank, such as a `projectbrief.md` the user wrote), keep those files exactly as they are and treat them as the user's answers: skip the open prompt when they already describe the idea, mark what they cover as clear in Phase 2, and propose only the files that are missing, empty, or template-only.
 
 **Stage:** if there is meaningful product code — not counting Tavo Stack's own files (the workflows under `.claude/skills/` and the blank bank files) — recommend `init-memory` instead (it can read a spec too); if there is a PRD or spec but no code, recommend `from-prd`. Otherwise, proceed.
 

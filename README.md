@@ -22,6 +22,24 @@ An agent's memory resets between sessions. Tavo Stack keeps what matters in a sm
 | `from-prd` | Fills a blank bank from an existing PRD, brief or spec. |
 | `init-memory` | Fills a blank bank by reading an existing codebase. |
 
+**More workflows** (always part of the plugin; optional groups when copied into a project):
+
+| Group | Workflow | What it does |
+|---|---|---|
+| Planning and review | `breakdown` | Breaks a task into steps before any editing. |
+| | `review` | Reviews the current branch or diff. |
+| | `ship` | Runs a pre-merge readiness checklist and asks for proof the change works. |
+| | `security-check` | A light security pass on the current change. |
+| | `ask-codex` | Asks the Codex command-line tool for a second opinion. |
+| Writing | `polish` | Rewrites prose so a reader gets the facts faster. Proposes; never writes. |
+| Verification | `verify-map` | Records how to verify a feature by hand, and what was seen last time. |
+| Pull requests | `file-pr` | Opens a pull request that starts with the problem. |
+| | `babysit-pr` | Watches a pull request through checks and review, and fixes real findings. |
+| | `modernize-pr` | Decides whether a stale pull request should be refreshed, reworked or closed. |
+| | `pr-comment` | Rules for any comment posted on your behalf. |
+
+The pull-request workflows need the GitHub command-line tool `gh`. `babysit-pr` includes the `pr-wait` script from [tstack](https://github.com/t3dotgg/tstack) (MIT, Theo Browne), unchanged.
+
 ## Two ways to use it
 
 The same files work both ways. Pick one per project.
@@ -57,15 +75,15 @@ If the source is a URL, clone it fresh into a temporary folder outside this proj
 Look first and change nothing. If this project already uses Serel Memory, stop and tell me; do not continue. Never replace, merge or edit an existing memory-bank/ file, .rules, AGENTS.md, CLAUDE.md or workflow: report those and leave them as they are. Do not run scripts from the source, edit .gitignore, commit or push. Show me every path you would create and whether Git will see it, and wait for my yes before writing anything.
 ```
 
-The agent follows [SETUP.md](SETUP.md): it shows every file it would create, waits for your yes, and never replaces a file you already have. Then open a new session and run `/start`.
+The agent follows [SETUP.md](SETUP.md): it asks which optional groups you want, shows every file it would create, waits for your yes, and never replaces a file you already have. Then open a new session and run `/start`.
 
-To update later, paste the same prompt again. Unchanged files are reported as the same, and changed ones are shown as differences for you to decide.
+To update later, or to add a group, paste the same prompt again. Unchanged files are reported as the same, and changed ones are shown as differences for you to decide.
 
 ## Status
 
 Early. Tested with the Claude Code command-line tool. Not yet tested in the Claude desktop app or in Codex.
 
-Tavo Stack continues an earlier project, Serel Memory, trimmed to the workflows that saw real use. A project already set up with Serel Memory is not handled by the setup above; a migration is planned.
+Tavo Stack continues an earlier project, Serel Memory, and its companion Serel Kit, trimmed to the workflows that saw real use. A project already set up with Serel Memory is not handled by the setup above; a migration is planned.
 
 One leftover from that history: `start` and `update-memory` run a project's `bin/serel-memory` drift checker when it exists. A new project reports `checker absent`.
 

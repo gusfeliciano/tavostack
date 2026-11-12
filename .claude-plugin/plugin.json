@@ -1,7 +1,7 @@
 {
   "name": "tavo",
-  "version": "0.1.0",
-  "description": "Tavo Stack: a project memory bank for Claude Code, with the workflows that read and update it.",
+  "version": "0.2.0",
+  "description": "Tavo Stack: a project memory bank for Claude Code, with workflows to read and update it, plan, review, write and ship.",
   "author": { "name": "Gus Feliciano" },
   "license": "MIT",
   "repository": "https://github.com/gusfeliciano/tavostack"
