@@ -1,0 +1,12 @@
+{
+  "name": "tavostack",
+  "description": "Tavo Stack: a project memory bank for Claude Code, with the workflows that read and update it.",
+  "owner": { "name": "Gus Feliciano" },
+  "plugins": [
+    {
+      "name": "tavo",
+      "source": "./",
+      "description": "A project memory bank for Claude Code, with the workflows that read and update it."
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+# Project Rules & Learnings
+
+> The learning journal. Append non-obvious patterns, preferences, and gotchas as they're discovered.
+>
+> **Keep it high-signal, not append-forever.** Soft cap ~40 lines. When the file grows
+> past that, prune: delete things that are no longer true, and promote stabilized
+> conventions into `systemPatterns.md` (architecture) or the relevant memory-bank file.
+> A line earns its place by helping the next session make a better decision.
+
+## User preferences
+
+<!-- How the human you're working with wants things done. Tone, formatting, level of detail, when to ask vs. just do. -->
+
+-
+
+## Code patterns
+
+<!-- Conventions this codebase follows that aren't enforced by linter or formatter. -->
+
+-
+
+## Gotchas
+
+<!-- Non-obvious traps. The thing you wish you'd known before you hit it. -->
+
+-
+
+## Workflow
+
+<!-- How work gets done here: branching, commits, review, release. -->
+
+-
+
+## Things we've tried and rejected
+
+<!-- Approaches that didn't work, so they don't get re-attempted. Include the why. -->
+
+-
+
+## Style and tone
+
+<!-- For projects where copy/docs matter: voice, vocabulary, things to avoid. -->
+
+-
