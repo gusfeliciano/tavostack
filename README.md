@@ -37,8 +37,21 @@ An agent's memory resets between sessions. Tavo Stack keeps what matters in a sm
 | | `babysit-pr` | Watches a pull request through checks and review, and fixes real findings. |
 | | `modernize-pr` | Decides whether a stale pull request should be refreshed, reworked or closed. |
 | | `pr-comment` | Rules for any comment posted on your behalf. |
+| Hands-off | `full-stop` | Finishes a change, proves it, gets it reviewed, files the pull request, watches it, and stops when it is ready for you to merge. |
+| | `full-send` | The same, and merges once everything passes. Only you can start it. |
+| | `codex-loop` | Reviews a change with the Codex command-line tool in rounds until both agree, or the round budget runs out. |
+| Debugging and reflection | `diagnose` | Builds a fast command that fails on the bug before guessing at causes, then narrows, fixes and keeps the test. |
+| | `grill` | Interviews you about a plan in rounds, each question with a recommended answer. |
+| | `retro` | After a session, proposes fixes to the project's instructions and checks. Only you can start it. |
 
-The pull-request workflows need the GitHub command-line tool `gh`. `babysit-pr` includes the `pr-wait` script from [tstack](https://github.com/t3dotgg/tstack) (MIT, Theo Browne), unchanged.
+The pull-request and hands-off workflows need the GitHub command-line tool `gh`. `codex-loop`, and the two hands-off workflows that use it, need the Codex command-line tool.
+
+## Credits
+
+Several workflows are adapted from other people's work, under the MIT license. Each folder carries the original license file.
+
+- [tstack](https://github.com/t3dotgg/tstack) by Theo Browne: `full-send`, `full-stop`, `codex-loop` (from `sol-loop`), `file-pr`, `babysit-pr` (with its `pr-wait` script, unchanged), `modernize-pr`, `pr-comment`.
+- [mattpocock/skills](https://github.com/mattpocock/skills) by Matt Pocock: `diagnose`, `grill`, `retro`, and the evidence and merge-danger sections of `file-pr`.
 
 ## Two ways to use it
 

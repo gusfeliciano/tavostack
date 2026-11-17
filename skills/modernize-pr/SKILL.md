@@ -5,6 +5,8 @@ description: "Bring an old pull request up to date, or decide it should not land
 
 # Modernize PR
 
+Adapted from tstack by Theo Browne (MIT); see LICENSE-tstack.
+
 Modernize the idea, not just the branch. A clean rebase does not prove that a
 PR still belongs in the product. This workflow works out what the PR was for
 and what changed around it, then recommends MODERNIZE, REWORK, or CLOSE. Only

@@ -62,6 +62,10 @@ Optional workflows, present only if they were set up in this project or the plug
 - `polish` — rewrite prose so a reader gets the facts faster; proposes, never writes
 - `verify-map` — record how to verify a feature by hand, and what was seen
 - `file-pr`, `babysit-pr`, `modernize-pr`, `pr-comment` — open a pull request, watch it through checks and review, refresh a stale one, and comment on one
+- `full-stop`, `full-send`, `codex-loop` — take a change to a pull request that is ready to merge (or merged), with a Codex review loop on the way
+- `diagnose` — find a bug's cause by first building a command that fails on it
+- `grill` — stress-test a plan in rounds of questions, each with a recommended answer
+- `retro` — after a session, propose fixes to the project's instructions and checks
 
 ## Ground rules
 

@@ -22,7 +22,7 @@ If any folder on the way to a target path is a symbolic link, or any target path
 
 ## Step 3. Build the plan
 
-**Choose what to copy.** The core set is always copied. The four groups below are optional: ask the user once which they want, unless they already said. If they have no preference, copy the core set only. A group whose folders already exist in the target counts as chosen.
+**Choose what to copy.** The core set is always copied. The six groups below are optional: ask the user once which they want, unless they already said. If they have no preference, copy the core set only. A group whose folders already exist in the target counts as chosen.
 
 | Group | Workflows | Needs |
 |---|---|---|
@@ -30,8 +30,10 @@ If any folder on the way to a target path is a symbolic link, or any target path
 | Writing | `polish` | nothing |
 | Verification | `verify-map` | an initialized memory bank |
 | Pull requests | `file-pr`, `babysit-pr`, `modernize-pr`, `pr-comment` | the GitHub command-line tool `gh`; `babysit-pr` also needs `python3` |
+| Hands-off | `full-send`, `full-stop`, `codex-loop` | the Pull requests group, and the Codex command-line tool |
+| Debugging and reflection | `diagnose`, `grill`, `retro` | nothing |
 
-A group is copied whole or not at all, because its workflows call each other.
+A group is copied whole or not at all, because its workflows call each other. Hands-off calls `file-pr` and `babysit-pr`, so choosing it also chooses Pull requests; if Pull requests cannot be created, Hands-off is not created either.
 
 **Core set.** Compare each source path with its target path.
 
@@ -59,6 +61,7 @@ Rules that have no exceptions:
 
 - A file under `memory-bank/`, `.rules`, or `AGENTS.md` that already exists is always **KEEP** or **SAME**. It is never replaced, merged, or edited by setup.
 - A workflow folder under `.claude/skills/` that already exists and differs is **KEEP**. Show what differs (`diff -r`), and say the user can replace it themselves after reviewing; setup does not.
+- The groups call workflows in the core set, such as `update-memory`. If the core set is blocked, no group is created either: a group is created only when every core workflow will be present afterwards, either already there and **SAME**, or **CREATE** in this same plan.
 - Each set is created whole or not at all. The core set is one set, and each group is one set. If any workflow folder in a set is **KEEP**, no workflow folder of that set is created: its workflows call each other, and a mixed set could call a file that is not there. Report the set as blocked, show what differs, and let the user decide. Other sets are not affected.
 - The workflows depend on `.claude/skills/_shared/`. If that folder exists and differs, it is **KEEP**, and then no workflow folder is created either: say that the existing `_shared` folder does not match this version, show what differs, and stop for the user to decide. A workflow is only ever created next to a `_shared` folder that is **CREATE** or **SAME**.
 - Also compare by purpose, not only by name: if the project has its own session opener or memory updater under another name (in `.claude/skills/`, `.claude/commands/` or `.agents/skills/`), report it in the plan. Setup deletes and disables nothing.
@@ -76,7 +79,7 @@ If every path is **SAME** or **KEEP**, say there is nothing to create and stop.
 
 ## Step 5. Create only what was approved
 
-- Copy each **CREATE** path. Create parent folders as needed. Keep `rotate-check.sh` and `babysit-pr/scripts/pr-wait` executable, and do not edit `pr-wait`.
+- Copy each **CREATE** path. Create parent folders as needed. Keep `rotate-check.sh`, `babysit-pr/scripts/pr-wait` and `diagnose/scripts/hitl-loop.template.sh` executable, and do not edit `pr-wait`.
 - Touch nothing else. Do not edit `.gitignore`, Git settings, or any existing file, unless the user approved the one-line `CLAUDE.md` change in Step 3.
 - Do not commit or push.
 

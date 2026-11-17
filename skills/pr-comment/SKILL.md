@@ -5,6 +5,8 @@ description: "Post a GitHub comment or reply on the user's behalf, with an attri
 
 # PR comment
 
+Adapted from tstack by Theo Browne (MIT); see LICENSE-tstack.
+
 Rules for every comment you post on GitHub on the user's behalf. Follow them
 whether the user asked for the comment directly or another workflow needs one:
 `file-pr`, `babysit-pr`, and `modernize-pr` point here.

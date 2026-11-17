@@ -5,6 +5,8 @@ description: "Open a real pull request for the current branch, with a title that
 
 # File PR
 
+Adapted from tstack by Theo Browne (MIT); see LICENSE-tstack.
+
 Open a pull request for the current branch that a reviewer can understand in
 one read: a title that says why the change matters, and a description that
 starts with the problem. It opens a real PR, not a draft, and never merges.
@@ -101,7 +103,38 @@ no merge, no edits to other PRs.
    > were never dropped. Now the oldest ones are evicted past a set limit.
 
    Fill in every section the template asks for. Write "not run" or "none"
-   rather than inventing results. End with the attribution the rules in
+   rather than inventing results.
+
+   A repository template always wins. When it does not already cover them,
+   add these two short sections after the problem and solution:
+
+   ```markdown
+   ## Evidence
+
+   - **Before:** <output, a failing test run, or a screenshot>
+   - **After:** <output, the same test run passing, or a screenshot>
+
+   ## Merge danger
+
+   **Door:** <one-way | two-way>
+   **Blast radius:** <one word>. <optional: one sentence on what could break>
+   ```
+
+   - **Evidence** shows that the change works, before and after. Use
+     results you observed in this session: command output, the test that
+     failed and now passes, or a screenshot when the change is visual and
+     you can take one. Write "not run" rather than inventing a result.
+   - **Merge danger** says how risky the merge is. `Door:` is two-way when
+     the change can be undone after merge, for example by a revert, and
+     one-way when it cannot, such as a destructive action or a decision
+     that is hard to reverse. `Blast radius:` is one word for how far a
+     problem would reach, plus an optional sentence naming what could
+     break, such as consumers of an API or the layout on small screens.
+
+   The Evidence and Merge danger sections are adapted from mattpocock/skills by Matt Pocock (MIT); see LICENSE-mattpocock.
+   That credit belongs to this file; do not put it in a PR description.
+
+   End with the attribution the rules in
    Required reads call for. If they say nothing, end with
    `Created with <model> in <harness>.`, naming any subagent models that
    wrote part of the change. Use the model name the harness reports; if it
@@ -129,6 +162,7 @@ FILE-PR: <opened | already exists | not opened> — <PR URL>
 TITLE: <title>
 BASE: <base> <- <branch> (<n> commits, <n> files)
 TEMPLATE: <path | none>
+EVIDENCE / MERGE DANGER: <added | covered by the template>; door <one-way | two-way>, blast radius <word>
 TITLE STYLE: <where the convention came from>
 PRIVACY CHECK: <clean | removed: <what>>
 ATTRIBUTION: <the line used, and the rule it came from>
