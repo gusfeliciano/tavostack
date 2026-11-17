@@ -9,17 +9,14 @@ Codex is not covered yet: the copied workflows are tested in Claude Code only.
 In the target, check:
 
 - Git status, and whether the target is a Git repository at all.
-- Whether any of these exist: `.serel-memory.json`, `.basecamp.json`, `.serel-kit.json`, `bin/serel-memory`.
 - Whether a command file exists with the name of a workflow this setup would bring: `.claude/commands/<name>.md`, for every workflow in the core set and in each group the user chose (Step 3).
 - Each path in the tables in Step 3.
 - Whether `.claude`, `.claude/skills`, `memory-bank`, or any other folder on the way to a target path is a symbolic link, and whether every target path, fully resolved, stays inside the project.
 - Instruction files: `AGENTS.md`, and any `CLAUDE.md`, `.claude/CLAUDE.md` or `CLAUDE.local.md`, in the project or in a folder above it.
 
-## Step 2. Stop if the project already uses Serel Memory
+## Step 2. Stop if something is in the way
 
-If any file from the second bullet above exists, **stop and write nothing.** Say that this project was set up with Serel Memory, that moving it to Tavo Stack is a separate migration, and that copying these files in would change which workflow `/start` runs. Do not offer to continue.
-
-If any command file from the third bullet exists, also **stop and write nothing**, whoever wrote it. Claude Code runs a workflow folder in place of a command file of the same name, so creating the folder would silently replace what that command does. Name the files and say the user decides what happens to them; setup deletes and disables nothing.
+If any command file from the second bullet exists, **stop and write nothing**, whoever wrote it. Claude Code runs a workflow folder in place of a command file of the same name, so creating the folder would silently replace what that command does. Name the files and say the user decides what happens to them; setup deletes and disables nothing.
 
 If any folder on the way to a target path is a symbolic link, or any target path resolves outside the project, **stop and write nothing**. Say which path, and that setup only writes inside the project itself.
 

@@ -33,13 +33,6 @@ Do these in order, before anything else:
 3. Look for optional docs under `memory-bank/` that clearly match the user's task or active context, and read only the relevant ones. Never read `memory-bank/archive/` at startup.
 4. Run `git log --oneline -10` to see recent activity.
 5. Run `git status` to see uncommitted changes.
-6. If `bin/serel-memory` exists, run the read-only drift check and keep its summary line for the audit:
-
-   ```bash
-   "$(git rev-parse --show-toplevel)/bin/serel-memory" check
-   ```
-
-   Report its findings and summary line as they are — it never blocks the session. If the file is absent, say `checker absent`.
 
 If any memory bank file is empty, missing, or still only template placeholders, surface it as `BLANK` or `UNINITIALIZED`. If the mode is `setup`, or the memory bank is missing or no core file has real content, use **Setup mode** instead of Step 2. Otherwise, when some files are blank (a partial bank), continue with Step 2 and offer to fill them: on yes, choose the seed workflow as Setup mode does; it proposes only the blank files and keeps the others exactly as they are.
 
@@ -58,7 +51,6 @@ CONTEXT AUDIT:
 - Uninitialized: [missing, empty, or template-only files]
 - Recent commits not reflected in memory: [yes/no/unknown]
 - Working tree: [clean / dirty summary]
-- Drift: [the drift checker's summary line, or "checker absent"]
 
 PROJECT: [one sentence — what we're building]
 PHASE: [from progress.md]

@@ -72,7 +72,7 @@ Source: https://github.com/gusfeliciano/tavostack
 
 If the source is a URL, clone it fresh into a temporary folder outside this project. If it is a folder, use it as it is and change nothing in it. Read SETUP.md in the source and follow it exactly. This project is the target.
 
-Look first and change nothing. If this project already uses Serel Memory, stop and tell me; do not continue. Never replace, merge or edit an existing memory-bank/ file, .rules, AGENTS.md, CLAUDE.md or workflow: report those and leave them as they are. Do not run scripts from the source, edit .gitignore, commit or push. Show me every path you would create and whether Git will see it, and wait for my yes before writing anything.
+Look first and change nothing. Never replace, merge or edit an existing memory-bank/ file, .rules, AGENTS.md, CLAUDE.md or workflow: report those and leave them as they are. Do not run scripts from the source, edit .gitignore, commit or push. Show me every path you would create and whether Git will see it, and wait for my yes before writing anything.
 ```
 
 The agent follows [SETUP.md](SETUP.md): it asks which optional groups you want, shows every file it would create, waits for your yes, and never replaces a file you already have. Then open a new session and run `/start`.
@@ -82,10 +82,6 @@ To update later, or to add a group, paste the same prompt again. Unchanged files
 ## Status
 
 Early. Tested with the Claude Code command-line tool. Not yet tested in the Claude desktop app or in Codex.
-
-Tavo Stack continues an earlier project, Serel Memory, and its companion Serel Kit, trimmed to the workflows that saw real use. A project already set up with Serel Memory is not handled by the setup above; a migration is planned.
-
-One leftover from that history: `start` and `update-memory` run a project's `bin/serel-memory` drift checker when it exists. A new project reports `checker absent`.
 
 ## License
 
