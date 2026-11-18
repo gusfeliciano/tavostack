@@ -16,7 +16,7 @@ An agent's memory resets between sessions. Tavo Stack keeps what matters in a sm
 
 | Workflow | What it does |
 |---|---|
-| `start` | Reads the bank, summarizes where things stand, and asks where to pick up. A blank bank routes to guided setup. |
+| `start` | Reads the bank, shows a status dashboard with what is waiting on you first, and asks where to pick up. `start quick` gives the short version. A blank bank routes to guided setup. |
 | `update-memory` | Proposes updates to the bank from the session's work. Shows the diffs and waits before writing. |
 | `discover` | Fills a blank bank from a rough idea, by asking a few questions. |
 | `from-prd` | Fills a blank bank from an existing PRD, brief or spec. |

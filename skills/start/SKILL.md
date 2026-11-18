@@ -1,6 +1,6 @@
 ---
 name: start
-description: "Start or resume a memory-bank project. Use: `start` (quick), `start full` (rich dashboard), or `start setup` (guided setup). Loads memory bank, summarizes state, asks where to pick up; routes a missing or blank bank to setup."
+description: "Start or resume a memory-bank project. Use: `start` (dashboard and full breakdown), `start quick` (short summary), or `start setup` (guided setup). Loads memory bank, shows the project state and what is waiting on the user, asks where to pick up; routes a missing or blank bank to setup."
 ---
 
 # Start
@@ -11,8 +11,8 @@ Arguments the user gave with the call (Claude Code substitutes them here: [$ARGU
 
 **Mode:** Check those arguments for a mode keyword.
 
-- If empty, `quick`, or `brief` → use **Quick mode** (compact output; both modes read the same inputs).
-- If `full`, `onboard`, or `dashboard` → use **Full mode** (rich onboarding dashboard).
+- If empty, `full`, `onboard`, or `dashboard` → use **Full mode** (the dashboard and the full breakdown).
+- If `quick` or `brief` → use **Quick mode** (compact output; both modes read the same inputs).
 - If `setup` → use **Setup mode** (guided setup routing).
 
 ---
@@ -40,9 +40,28 @@ If any memory bank file is empty, missing, or still only template placeholders, 
 
 ## Step 2 — Produce the output
 
-### Quick mode (default)
+### Full mode (default)
 
-Produce a context audit and session summary in this exact format:
+Lead with the dashboard, so the state of the project can be read at a glance. Then the context audit, then the sections below, in this order. Keep every line short. Leave out a section that has nothing in it, apart from the dashboard and the audit.
+
+#### Status Dashboard
+
+```text
+PROJECT: [one sentence — what we're building]
+PHASE: [from progress.md]
+
+IN PROGRESS:    [count] — [name the top 1–3]
+NEXT UP:        [count] — [name the top 1–3]
+WAITING ON YOU: [count] — [listed in full below]
+LEFT TO BUILD:  [count]
+KNOWN ISSUES:   [count]
+```
+
+Count from the bank: `progress.md` for in progress, left to build and known issues; `activeContext.md` for next steps; open questions and pending decisions for waiting on you. Never guess a count: when the bank does not list something, write `not tracked`.
+
+If the project tracks work in GitHub Issues and `gh` is installed and signed in, add one line, `OPEN ISSUES: [count]`, from `gh issue list --state open`. If `gh` is missing or the call fails, leave the line out and carry on. Never restate issues in the bank or the bank in issues.
+
+#### Context Audit
 
 ```text
 CONTEXT AUDIT:
@@ -51,20 +70,17 @@ CONTEXT AUDIT:
 - Uninitialized: [missing, empty, or template-only files]
 - Recent commits not reflected in memory: [yes/no/unknown]
 - Working tree: [clean / dirty summary]
-
-PROJECT: [one sentence — what we're building]
-PHASE: [from progress.md]
-LAST SESSION: [from activeContext.md — what was being worked on]
-CURRENT STATE: [what works / what's in progress / known issues — 2 lines max]
-NEXT STEPS: [from activeContext.md — top 1–3]
-OPEN QUESTIONS: [anything blocking or unresolved]
 ```
 
-End with: **"Where do you want to pick up?"** Then wait.
+#### Waiting on You
 
-### Full mode (`start full`)
+List these first, before any suggestion, one line each with why it matters:
 
-Produce the full context audit (same as quick mode), then continue with all of the sections below.
+- Open questions in `activeContext.md` that only the user can answer
+- Pending or draft decisions in `decisionLog.md`
+- Steps only the user can take (an approval, a login, an account or a purchase)
+
+Nothing an agent does can clear these, and they are easy to lose. If there are none, say "Nothing is waiting on you."
 
 #### Recent Progress (last 2–3 sessions)
 
@@ -74,7 +90,7 @@ Extract from `progress.md` recent milestones and `activeContext.md` recent chang
 - Key technical discoveries or architectural changes
 - Milestones reached
 
-#### Current State Analysis
+#### Current State
 
 **What Works**
 
@@ -94,27 +110,35 @@ Extract from `progress.md` recent milestones and `activeContext.md` recent chang
 - Pull from `progress.md` "What's left to build" section
 - Include estimates where you can reasonably infer them
 
-#### Open Decisions & Blockers
+**Plans** (only if the bank holds plan documents)
 
-- Pull from `activeContext.md` open questions
-- Pull from `decisionLog.md` any pending/draft decisions
-- Flag any memory bank staleness (commits not reflected, files out of date)
+- Sort them into active, ready to start, and blocked, and name the blocker
+- Never call a plan ready, done or blocked from its status line alone. Check Git first (`git log --oneline --grep=<feature>`, or that the files it names exist): plan statuses go stale.
 
 #### Git Status
 
+- Current branch, and commits ahead of or behind the remote
 - Uncommitted changes that should be addressed
-- Commits ahead/behind of remote
-- Current branch info
+- Memory bank staleness: commits not reflected, files out of date
+
+#### Development Context
+
+Two to four lines, only from what you read. Write `unknown` instead of guessing, and do not run the project's checks to find out:
+
+- **Recent pattern:** how the last sessions were structured
+- **Current focus:** the area getting attention
+- **Checks:** whether tests and lint pass, as the bank last recorded it
+- **Unreleased work:** anything finished but not shipped
 
 #### Suggested Next Steps
 
 Provide 3–5 specific, actionable recommendations organized by urgency:
 
-🔴 **URGENT** — blocking progress or stale/broken
+🔴 **URGENT** — blocking progress or stale/broken, including anything a "Waiting on You" item is holding up
 🟡 **HIGH-VALUE** — best use of this session based on momentum and impact
 🟢 **STRATEGIC** — important but can wait
 
-For each, include: clear action item, rough time estimate, expected outcome.
+For each, include: clear action item, rough time estimate, expected outcome, and why now.
 
 #### Direction Options
 
@@ -126,6 +150,21 @@ Present 3–4 options clearly:
 - **Option D:** Something else
 
 End with: **"Which direction would you like to take for this session?"** Then wait.
+
+### Quick mode (`start quick`)
+
+Produce the context audit (the same block as full mode) and this summary, in this exact format:
+
+```text
+PROJECT: [one sentence — what we're building]
+PHASE: [from progress.md]
+LAST SESSION: [from activeContext.md — what was being worked on]
+CURRENT STATE: [what works / what's in progress / known issues — 2 lines max]
+NEXT STEPS: [from activeContext.md — top 1–3]
+WAITING ON YOU: [open questions, pending decisions, steps only the user can take — or "nothing"]
+```
+
+End with: **"Where do you want to pick up?"** Then wait.
 
 ### Setup mode (`start setup`, or a missing or blank bank)
 

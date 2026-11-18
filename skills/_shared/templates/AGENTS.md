@@ -46,7 +46,7 @@ Refresh every file in `memory-bank/`. Focus especially on `activeContext.md`, `p
 
 Tavo Stack's workflows. Copied into this project they are called as `/name`; loaded from the Tavo Stack plugin they are `/tavo:name`:
 
-- `start` — read the bank, summarize state, ask where to pick up (`start full` for a fuller dashboard, `start setup` for guided setup)
+- `start` — read the bank, show a status dashboard and what is waiting on you, ask where to pick up (`start quick` for a short summary, `start setup` for guided setup)
 - `update-memory` — refresh the memory bank from this session's work, with diffs shown first
 - `discover` — define a project from a rough idea and seed the bank (no code yet)
 - `from-prd` — seed the bank from an existing PRD, brief, or spec
